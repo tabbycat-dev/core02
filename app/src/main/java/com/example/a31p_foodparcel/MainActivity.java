@@ -18,19 +18,18 @@ public class MainActivity extends AppCompatActivity {
         initialiseUI();
     }
     private void initialiseUI(){
-        setText(R.id.tvDate02);
-        setText(R.id.tvDate03);
-        setText(R.id.tvDate04);
-        setText(R.id.tvDate01);
-
+        setDate(R.id.tvDate02);//Set date
+        setDate(R.id.tvDate03);
+        setDate(R.id.tvDate04);
+        setDate(R.id.tvDate01);
 
     }
-    private void setText(int res){
+    //java built-in date to generate date
+    private void setDate(int res){
         TextView date = findViewById(res);
         String dateTime = java.time.LocalDate.now().toString();
         date.setText(dateTime);
     }
-
 
     public void clickFood01(View v){
         showDetails(R.drawable.bo_kho,R.string.name_01, R.string.date);
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public void clickFood04(View v){
         showDetails(R.drawable.thai_rice,R.string.name_04, R.string.date);
     }
+    //passing date to Image Display Activity using Bundle
     private void showDetails(int image, int name, int date) {
         Bundle dataBundle = new Bundle();
         dataBundle.putInt("IMAGE",image);
@@ -53,5 +53,17 @@ public class MainActivity extends AppCompatActivity {
 
         i.putExtras(dataBundle);
         startActivity(i);
+    }
+    //TODO #1 set up intent to get a result
+    public void buttonHandler(View v) {
+
+    }
+    // TODO #4 get result back and process/update UI
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        // TODO #4a check for result code
+        // TODO #4b if result ok then get data and update UI
+        // TODO #4c add elses/Logs for result not okay
+
     }
 }
