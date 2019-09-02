@@ -3,7 +3,10 @@ package com.example.a31p_foodparcel;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
+// TODO #2 turn Food into a parcelable object
 
 public class Food implements Parcelable {
     private String name;
@@ -80,5 +83,11 @@ public class Food implements Parcelable {
 
     public Date getDate() {
         return date;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

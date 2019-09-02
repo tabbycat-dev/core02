@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -32,7 +34,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickFood01(View v){
-        showDetails(R.drawable.bo_kho,R.string.name_01, R.string.date);
+        //showDetails(R.drawable.bo_kho,R.string.name_01, R.string.date);
+
+        //TODO #1 set up intent to get a result
+        Intent i = new Intent (getApplicationContext(), ImageDisplayActivity.class);
+        startActivityForResult(i, 0);
     }
     public void clickFood02(View v){
         showDetails(R.drawable.broken_rice,R.string.name_02, R.string.date);
@@ -54,16 +60,29 @@ public class MainActivity extends AppCompatActivity {
         i.putExtras(dataBundle);
         startActivity(i);
     }
-    //TODO #1 set up intent to get a result
-    public void buttonHandler(View v) {
-
-    }
     // TODO #4 get result back and process/update UI
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         // TODO #4a check for result code
-        // TODO #4b if result ok then get data and update UI
-        // TODO #4c add elses/Logs for result not okay
+        if(requestCode ==0){
+            // TODO #4b if result ok then get data and update UI
+            if(resultCode ==RESULT_OK){
+                // TODO #4c add elses/Logs for result not okay
+                if(intent ==null){
+                    Log.i("INTENT","Intent is empty");
+                }else{
+                    ArrayList<Food> foods = intent.getParcelableArrayListExtra("FOOD_DATA");
+                    Food food = foods.get(0);//get first index
+                    Log.i("INTENT", food.toString());
+
+                    //TODO UPDATE RESULT TO LAYOUT
+                    TextView tvName01 = findViewById(R.id.tvName01);
+                    tvName01.setText(food.getName());
+
+                }
+
+            }else Log.i("INTENT","Result not okay");
+        }else Log.i("INTENT","Code does not match");
 
     }
 }
