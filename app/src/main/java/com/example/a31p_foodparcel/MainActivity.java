@@ -1,5 +1,6 @@
 package com.example.a31p_foodparcel;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,11 +8,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private Food food01 = new Food("Bo Kho");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +40,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickFood01(View v){
         //showDetails(R.drawable.bo_kho,R.string.name_01, R.string.date);
+            Log.i("INTENT","Intent is empty");
+            //TODO #1 set up intent to get a result
+            //Intent i = new Intent (getApplicationContext(), ImageDisplayActivity.class);
+            //startActivityForResult(i, 0);
+            TextView name = findViewById(R.id.tvName01);
+            TextView date = findViewById(R.id.tvDate01);
+            showDetails(R.drawable.bo_kho,name.getText().toString(), date.getText().toString(),0);
 
-        //TODO #1 set up intent to get a result
-        //Intent i = new Intent (getApplicationContext(), ImageDisplayActivity.class);
-        //startActivityForResult(i, 0);
-        showDetails(R.drawable.bo_kho,R.string.name_01, R.string.date, 0);
-    }
+        }
+
+
     public void clickFood02(View v){
         //showDetails(R.drawable.broken_rice,R.string.name_02, R.string.date);
     }
@@ -51,11 +61,11 @@ public class MainActivity extends AppCompatActivity {
         //showDetails(R.drawable.thai_rice,R.string.name_04, R.string.date);
     }
     //passing date to Image Display Activity using Bundle, Intent
-    private void showDetails(int image, int name, int date, int requestedCode) {
+    private void showDetails(int image, String name, String date, int requestedCode) {
         Bundle dataBundle = new Bundle();
         dataBundle.putInt("IMAGE",image);
-        dataBundle.putInt("NAME",name);
-        dataBundle.putInt("DATE",date);
+        dataBundle.putString("NAME",name);
+        dataBundle.putString("DATE",date);
         //Intent i = new Intent(this, ImageDisplayActivity.class);
         //startActivity(i);
         //TODO #1 set up intent to get a result
@@ -75,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("INTENT","Intent is empty");
                 }else{
                     ArrayList<Food> foods = intent.getParcelableArrayListExtra("FOOD_DATA");
-                    Food food = foods.get(0);//get first index
-                    Log.i("INTENT", food.toString());
+                    food01 = foods.get(0);//get first index
+                    Log.i("INTENT", food01.toString());
 
                     //TODO UPDATE RESULT TO LAYOUT
                     TextView tvName01 = findViewById(R.id.tvName01);
-                    tvName01.setText(food.getName());
+                    tvName01.setText(food01.getName());
 
                 }
 
@@ -88,4 +98,6 @@ public class MainActivity extends AppCompatActivity {
         }else Log.i("INTENT","Code does not match");
 
     }
+
 }
+

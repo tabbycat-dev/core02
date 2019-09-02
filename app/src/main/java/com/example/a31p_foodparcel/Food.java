@@ -12,12 +12,21 @@ public class Food implements Parcelable {
     private String name;
     private String locationURL="";
     private String keyword="";
-    private Date date;
-    private Boolean share=false;
+    private String date;
+    private boolean share=false;
     private String authorEmail = "";
-    private String rating="";
+    private Float rating;
     public Food(String name){
         this.name = name;
+    }
+    public Food(String name, String locationURL, String keyword, String date, boolean share, String authorEmail, Float rating) {
+        this.name = name;
+        this.locationURL = locationURL;
+        this.keyword = keyword;
+        this.date = date;
+        this.share = share;
+        this.authorEmail = authorEmail;
+        this.rating = rating;
     }
 
     @Override
@@ -45,11 +54,11 @@ public class Food implements Parcelable {
         name = parcel.readString();
 
     }
-    public void setRating(String rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
     }
 
-    public String getRating() {
+    public Float getRating() {
         return rating;
     }
 
@@ -81,7 +90,7 @@ public class Food implements Parcelable {
         return share;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 

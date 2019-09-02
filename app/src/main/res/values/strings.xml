@@ -3,13 +3,20 @@
 
     <string name="label_name">Name</string>
     <string name="label_date">Date</string>
+    <string name="label_location">Location</string>
+    <string name="label_keyword">Keyword</string>
+    <string name="label_share">Share</string>
+    <string name="label_author">Author</string>
+    <string name="label_rating">Rating</string>
+    <string name="label_save">Save</string>
+
 
 
     <string name="name_01">Vietnamese Braised Beef Stew</string>
     <string name="name_02">Vietnamese Broken Rice with Grilled Pork</string>
     <string name="name_03">Salmon Sashimi</string>
     <string name="name_04">Thai Sticky Rice with Mango</string>
-
+    <string name="author">example@gmail.com</string>
     <string name="date">12/06/2019</string>
 
 </resources>
