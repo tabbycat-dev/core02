@@ -37,28 +37,31 @@ public class MainActivity extends AppCompatActivity {
         //showDetails(R.drawable.bo_kho,R.string.name_01, R.string.date);
 
         //TODO #1 set up intent to get a result
-        Intent i = new Intent (getApplicationContext(), ImageDisplayActivity.class);
-        startActivityForResult(i, 0);
+        //Intent i = new Intent (getApplicationContext(), ImageDisplayActivity.class);
+        //startActivityForResult(i, 0);
+        showDetails(R.drawable.bo_kho,R.string.name_01, R.string.date, 0);
     }
     public void clickFood02(View v){
-        showDetails(R.drawable.broken_rice,R.string.name_02, R.string.date);
+        //showDetails(R.drawable.broken_rice,R.string.name_02, R.string.date);
     }
     public void clickFood03(View v){
-        showDetails(R.drawable.sashimi,R.string.name_02, R.string.date);
+        //showDetails(R.drawable.sashimi,R.string.name_02, R.string.date);
     }
     public void clickFood04(View v){
-        showDetails(R.drawable.thai_rice,R.string.name_04, R.string.date);
+        //showDetails(R.drawable.thai_rice,R.string.name_04, R.string.date);
     }
-    //passing date to Image Display Activity using Bundle
-    private void showDetails(int image, int name, int date) {
+    //passing date to Image Display Activity using Bundle, Intent
+    private void showDetails(int image, int name, int date, int requestedCode) {
         Bundle dataBundle = new Bundle();
         dataBundle.putInt("IMAGE",image);
         dataBundle.putInt("NAME",name);
         dataBundle.putInt("DATE",date);
-        Intent i = new Intent(this, ImageDisplayActivity.class);
-
+        //Intent i = new Intent(this, ImageDisplayActivity.class);
+        //startActivity(i);
+        //TODO #1 set up intent to get a result
+        Intent i = new Intent (getApplicationContext(), ImageDisplayActivity.class);
         i.putExtras(dataBundle);
-        startActivity(i);
+        startActivityForResult(i, requestedCode);
     }
     // TODO #4 get result back and process/update UI
     @Override

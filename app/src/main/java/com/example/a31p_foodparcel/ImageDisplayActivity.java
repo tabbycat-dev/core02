@@ -15,7 +15,7 @@ public class ImageDisplayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_image);
-        //initialiseUI();
+        initialiseUI();
     }
     private void initialiseUI() {
         Bundle extras = getIntent().getExtras();
