@@ -94,7 +94,7 @@ class ImageDisplayActivity : AppCompatActivity() {
         cuisine = findViewById<EditText?>(R.id.etCuisine).text.toString()
         date = findViewById<EditText?>(R.id.etDate).text.toString()
         rating = findViewById<RatingBar?>(R.id.ratingBar).rating
-        //TODO validate FORM
+        //validate FORM
         if (name.isEmpty()) {
             findViewById<EditText?>(R.id.etName).error = "Name is required"
         } else {
@@ -110,7 +110,7 @@ class ImageDisplayActivity : AppCompatActivity() {
         } else isValidCusine = true
         if (isValidCusine && isValidName && isValidDate) {
             msg = "Saved"
-            //TODO call setup Intent and send back
+            //call setup Intent and send back
             HandlingResult()
         } else {
             msg = "Fail to save"
@@ -124,20 +124,20 @@ class ImageDisplayActivity : AppCompatActivity() {
          * Back press
          */
     private fun HandlingResult() {
-        // TODO #3 handle returning the form details when Saved
-        // TODO #3a create intent and task
+        // #3 handle returning the form details when Saved
+        //  #3a create intent and task
         createFoodObject()
-        // TODO #3b create list for food to be attached to parcelable
+        //  #3b create list for food to be attached to parcelable
         //need a list even for one item
         val foods = ArrayList<Food?>()
         foods.add(food)
         Log.i("INTENT", "Details: HandlingResult: ${foods[0]}")
-        // TODO #3c add list to intent, set result
+        //  #3c add list to intent, set result
         val i = Intent().apply {
             putParcelableArrayListExtra("FOOD_DATA", foods)
             setResult(Activity.RESULT_OK, this)
         }
-        // TODO #3d return
+        //  #3d return
         onBackPressed()
     }
 

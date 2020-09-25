@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     //onClick method when click on food image
     fun clickFood01(v: View?) {
-        //TODO #1 set up intent to get a result
+        //#1 set up intent to get a result
         setUpIntent(food01, "FOOD_01", 1)
     }
 
@@ -86,9 +86,9 @@ class MainActivity : AppCompatActivity() {
      * @param: requestCode of parcel, parcel Name, food object to send
      */
     private fun setUpIntent(foodObject: Food?, parcelName: String?, requestedCode: Int) {
-        //TODO #1a set up intent to get a result, receiver: second activity
+        //#1a set up intent to get a result, receiver: second activity
         val i = Intent(applicationContext, ImageDisplayActivity::class.java)
-        //TODO #1b set up food parcel with name, date and image
+        //#1b set up food parcel with name, date and image
         val foodList = ArrayList<Food?>()
         foodList.add(foodObject)
         i.putParcelableArrayListExtra(parcelName, foodList)
@@ -99,12 +99,12 @@ class MainActivity : AppCompatActivity() {
      * @param: requestCode of parcel, resultCode, intent
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
-        // TODO #4 get result back and process/update UI
-        // TODO #4a check for result code
+        // #4 get result back and process/update UI
+        // #4a check for result code
         if (requestCode == 1 || requestCode == 2 || requestCode == 3 || requestCode == 4) {
-            // TODO #4b if result ok then get data and update UI
+            // #4b if result ok then get data and update UI
             if (resultCode == Activity.RESULT_OK) {
-                // TODO #4c add elses/Logs for result not okay
+                //  #4c add elses/Logs for result not okay
                 if (intent == null) {
                     Log.i("INTENT", "Intent is empty")
                 } else {
@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity() {
                     Log.i("INTENT", "Main: results array list: ${foods.size}")
                     foods[0]?.let {
                         Log.i("INTENT", "Main: results Food object: ${it}")
-                        //TODO UPDATE UI AND OBJECT
+                        //UPDATE UI AND OBJECT
                         updateFood(requestCode, it)
                     }
                 }
