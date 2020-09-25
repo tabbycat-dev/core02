@@ -35,49 +35,10 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="@string/label_name"/>
+            android:text="@string/label_name" />
 
     </TableRow>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_height="34dp"
-            android:padding="5dp"
-            android:text="@string/label_location" />
-
-        <EditText
-            android:id="@+id/etLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="URL" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/tvKeyword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/label_keyword" />
-
-        <EditText
-            android:id="@+id/etKeyword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/label_keyword" />
-
-    </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
@@ -99,42 +60,24 @@
 
     </TableRow>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/tvShare"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/label_share" />
-
-        <ToggleButton
-            android:id="@+id/toggleShare"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_share" />
-
-    </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tvAuthor"
+            android:id="@+id/tvCuisine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="@string/label_author" />
+            android:text="@string/label_cuisine" />
 
         <EditText
-            android:id="@+id/etAuthor"
+            android:id="@+id/etCuisine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="@string/author" />
+            android:text="@string/cuisine" />
 
     </TableRow>
 
@@ -161,7 +104,7 @@
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/btnSave"
@@ -171,6 +114,6 @@
             android:layout_marginStart="50dp"
             android:layout_marginEnd="150dp"
             android:text="@string/label_save"
-            android:onClick="onSubmit"/>
+            android:onClick="onSubmit" />
     </TableRow>
 </TableLayout>

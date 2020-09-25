@@ -1,2 +1,1 @@
 include ':app'
-rootProject.name='A31P_FoodParcel'

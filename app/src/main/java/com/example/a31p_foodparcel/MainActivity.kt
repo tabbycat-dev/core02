@@ -5,52 +5,66 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.a31p_foodparcel.model.Food
 import java.time.LocalDate
 import java.util.*
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
 
 class MainActivity : AppCompatActivity() {
-    private var food01: Food? = null
-    private var food02: Food? = null
-    private var food03: Food? = null
-    private var food04: Food? = null
+    private lateinit var food04: Food
+    private lateinit var food03: Food
+    private lateinit var food02: Food
+    private lateinit var food01: Food
+
+    private lateinit var tvName01: TextView
+    private lateinit var tvName02: TextView
+    private lateinit var tvName03: TextView
+    private lateinit var tvName04: TextView
+
+    private lateinit var tvRating01: TextView
+    private lateinit var tvRating02: TextView
+    private lateinit var tvRating03: TextView
+    private lateinit var tvRating04: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initialiseUI()
-        onRestoreInstanceState(savedInstanceState)
     }
 
     private fun initialiseUI() {
-        setDate(R.id.tvDate02) //Set date
-        setDate(R.id.tvDate03)
-        setDate(R.id.tvDate04)
-        setDate(R.id.tvDate01)
-        val tvName01 = findViewById<TextView?>(R.id.tvName01)
-        val tvDate01 = findViewById<TextView?>(R.id.tvDate01)
-        val tvName02 = findViewById<TextView?>(R.id.tvName02)
-        val tvDate02 = findViewById<TextView?>(R.id.tvDate02)
-        val tvName03 = findViewById<TextView?>(R.id.tvName03)
-        val tvDate03 = findViewById<TextView?>(R.id.tvDate03)
-        val tvName04 = findViewById<TextView?>(R.id.tvName04)
-        val tvDate04 = findViewById<TextView?>(R.id.tvDate04)
-        val exampleAuthor = resources.getString(R.string.author) //example@gmail.com
-        food01 = Food(R.drawable.bo_kho, tvName01.text.toString(), tvDate01.text.toString(), resources.getString(R.string.author))
-        food02 = Food(R.drawable.broken_rice, tvName02.text.toString(), tvDate02.text.toString(), exampleAuthor)
-        food03 = Food(R.drawable.sashimi, tvName03.text.toString(), tvDate03.text.toString(), exampleAuthor)
-        food04 = Food(R.drawable.thai_mango, tvName04.text.toString(), tvDate04.text.toString(), exampleAuthor)
+        tvName01 = findViewById(R.id.tvName01)
+        tvRating01 = findViewById(R.id.tvRating01)
+        tvName02 = findViewById(R.id.tvName02)
+        tvRating02 = findViewById(R.id.tvRating02)
+        tvName03 = findViewById(R.id.tvName03)
+        tvRating03 = findViewById(R.id.tvRating03)
+        tvName04 = findViewById(R.id.tvName04)
+        tvRating04 = findViewById(R.id.tvRating04)
+        val date = "20/09/2020"
+        food01 = Food(R.drawable.bo_kho, tvName01.text.toString(), date, "Asian", 5f)
+        setRating(tvRating01, food01.rating)
+        food02 = Food(R.drawable.broken_rice, tvName02.text.toString(), date, "Asian", 5f)
+        setRating(tvRating02, food02.rating)
+
+        food03 = Food(R.drawable.sashimi, tvName03.text.toString(), date, "Asian", 5f)
+        setRating(tvRating03, food03.rating)
+
+        food04 = Food(R.drawable.thai_mango, tvName04.text.toString(), date, "Asian", 5f)
+        setRating(tvRating04, food04.rating)
+
     }
 
-    //java built-in date to generate date
-    private fun setDate(res: Int) {
-        val date = findViewById<TextView?>(res)
-        val dateTime = LocalDate.now().toString()
-        date.text = dateTime
+    private fun setRating(textView: TextView, rating: Float) {
+        textView.setText(rating.toDouble().toString())
     }
 
-    //onClick method when lick on food image
+
+    //onClick method when click on food image
     fun clickFood01(v: View?) {
         //TODO #1 set up intent to get a result
         setUpIntent(food01, "FOOD_01", 1)
@@ -94,14 +108,27 @@ class MainActivity : AppCompatActivity() {
                 if (intent == null) {
                     Log.i("INTENT", "Intent is empty")
                 } else {
+                    Log.i("INTENT", "Intent NOT empty")
                     val foods: ArrayList<Food?> = intent.getParcelableArrayListExtra("FOOD_DATA")
-                    val food = foods[0] //get first index
-                    //TODO UPDATE UI AND OBJECT
-                    updateFood(requestCode, food)
+                    Log.i("INTENT", "Main: results array list: ${foods.size}")
+                    foods[0]?.let {
+                        Log.i("INTENT", "Main: results Food object: ${it}")
+                        //TODO UPDATE UI AND OBJECT
+                        updateFood(requestCode, it)
+                    }
                 }
             } else Log.i("INTENT", "Result not okay")
         } else {
             //Log.i("INTENT","Code does not match");
+        }
+    }
+
+    private fun updateFoodObject(food: Food, updatedFood: Food) {
+        food.apply {
+            name = updatedFood.name
+            date = updatedFood.date
+            cusine = updatedFood.cusine
+            rating = updatedFood.rating
         }
     }
 
@@ -110,82 +137,31 @@ class MainActivity : AppCompatActivity() {
     * @param: food object
     */
     private fun updateFood(foodNumber: Int, food: Food?) {
-        val name = food.getName()
-        val date = food.getDate()
-        if (foodNumber == 1) {
-            val tvName01 = findViewById<TextView?>(R.id.tvName01)
-            val tvDate01 = findViewById<TextView?>(R.id.tvDate01)
-            tvName01.text = name
-            tvDate01.text = date
-            food01.updateFood(food.getName(), food.getLocationURL(), food.getKeyword(),
-                    food.getDate(), food.getShare(), food.getAuthorEmail(), food.getRating())
-        }
-        if (foodNumber == 2) {
-            val tvName02 = findViewById<TextView?>(R.id.tvName02)
-            val tvDate02 = findViewById<TextView?>(R.id.tvDate02)
-            tvName02.text = name
-            tvDate02.text = date
-            food02.updateFood(food.getName(), food.getLocationURL(), food.getKeyword(),
-                    food.getDate(), food.getShare(), food.getAuthorEmail(), food.getRating())
-        }
-        if (foodNumber == 3) {
-            val tvName03 = findViewById<TextView?>(R.id.tvName03)
-            val tvDate03 = findViewById<TextView?>(R.id.tvDate03)
-            tvName03.text = name
-            tvDate03.text = date
-            food03.updateFood(food.getName(), food.getLocationURL(), food.getKeyword(),
-                    food.getDate(), food.getShare(), food.getAuthorEmail(), food.getRating())
-        }
-        if (foodNumber == 4) {
-            val tvName04 = findViewById<TextView?>(R.id.tvName04)
-            val tvDate04 = findViewById<TextView?>(R.id.tvDate04)
-            tvName04.text = name
-            tvDate04.text = date
-            food04.updateFood(food.getName(), food.getLocationURL(), food.getKeyword(),
-                    food.getDate(), food.getShare(), food.getAuthorEmail(), food.getRating())
-        }
-    }
+        food?.let {
+            if (foodNumber == 1) {
+                updateFoodObject(food01, it)
 
-    public override fun onSaveInstanceState(outState: Bundle) {
-        val name01 = findViewById<TextView?>(R.id.tvName01)
-        val date01 = findViewById<TextView?>(R.id.tvDate01)
-        val name02 = findViewById<TextView?>(R.id.tvName02)
-        val date02 = findViewById<TextView?>(R.id.tvDate02)
-        val name03 = findViewById<TextView?>(R.id.tvName03)
-        val date03 = findViewById<TextView?>(R.id.tvDate03)
-        val name04 = findViewById<TextView?>(R.id.tvName04)
-        val date04 = findViewById<TextView?>(R.id.tvDate04)
-        outState.putString("NAME01", name01.text.toString())
-        outState.putString("NAME02", name02.text.toString())
-        outState.putString("NAME03", name03.text.toString())
-        outState.putString("NAME04", name04.text.toString())
-        outState.putString("DATE01", date01.text.toString())
-        outState.putString("DATE02", date02.text.toString())
-        outState.putString("DATE03", date03.text.toString())
-        outState.putString("DATE04", date04.text.toString())
-        super.onSaveInstanceState(outState)
-    }
+                tvName01.text = it.name
+                setRating(tvRating01, it.rating)
+            }
+            if (foodNumber == 2) {
+                updateFoodObject(food02, it)
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        if (savedInstanceState == null) {
-            return
+                tvName02.text = it.name
+                setRating(tvRating02, it.rating)
+            }
+            if (foodNumber == 3) {
+                updateFoodObject(food03, it)
+
+                tvName03.text = it.name
+                setRating(tvRating03, it.rating)
+            }
+            if (foodNumber == 4) {
+                updateFoodObject(food03, it)
+
+                tvName04.text = it.name
+                setRating(tvRating04, it.rating)
+            }
         }
-        val name01 = findViewById<TextView?>(R.id.tvName01)
-        val date01 = findViewById<TextView?>(R.id.tvDate01)
-        val name02 = findViewById<TextView?>(R.id.tvName02)
-        val date02 = findViewById<TextView?>(R.id.tvDate02)
-        val name03 = findViewById<TextView?>(R.id.tvName03)
-        val date03 = findViewById<TextView?>(R.id.tvDate03)
-        val name04 = findViewById<TextView?>(R.id.tvName04)
-        val date04 = findViewById<TextView?>(R.id.tvDate04)
-        name01.text = savedInstanceState.getString("NAME01")
-        name02.text = savedInstanceState.getString("NAME02")
-        name03.text = savedInstanceState.getString("NAME03")
-        name04.text = savedInstanceState.getString("NAME04")
-        date01.text = savedInstanceState.getString("DATE01")
-        date02.text = savedInstanceState.getString("DATE02")
-        date03.text = savedInstanceState.getString("DATE03")
-        date04.text = savedInstanceState.getString("DATE04")
-        super.onRestoreInstanceState(savedInstanceState)
     }
 }

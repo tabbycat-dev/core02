@@ -26,7 +26,7 @@
             android:layout_height="200dp"
             android:layout_margin="5dp"
             app:srcCompat="@drawable/broken_rice"
-            android:onClick="clickFood02"/>
+            android:onClick="clickFood02" />
     </TableRow>
 
     <TableRow
@@ -51,7 +51,7 @@
             android:text="@string/name_02"
             android:textColor="#FD000000"
             android:layout_margin="5dp"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
     </TableRow>
 
     <TableRow
@@ -59,20 +59,18 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tvDate01"
+            android:id="@+id/tvRating01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:text="Date01"/>
+            android:layout_margin="5dp" />
 
         <TextView
-            android:id="@+id/tvDate02"
+            android:id="@+id/tvRating02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:text="Date02" />
+            android:layout_margin="5dp" />
     </TableRow>
 
     <TableRow
@@ -86,8 +84,7 @@
             android:layout_height="200dp"
             android:layout_margin="5dp"
             app:srcCompat="@drawable/sashimi"
-            android:onClick="clickFood03"
-            />
+            android:onClick="clickFood03" />
 
         <ImageView
             android:id="@+id/image_04"
@@ -95,8 +92,7 @@
             android:layout_height="200dp"
             android:layout_margin="5dp"
             app:srcCompat="@drawable/thai_mango"
-            android:onClick="clickFood04"
-            />
+            android:onClick="clickFood04" />
     </TableRow>
 
     <TableRow
@@ -129,19 +125,17 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tvDate03"
+            android:id="@+id/tvRating03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:text="Date03" />
+            android:layout_margin="5dp" />
 
         <TextView
-            android:id="@+id/tvDate04"
+            android:id="@+id/tvRating04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:text="Date04" />
+            android:layout_margin="5dp" />
     </TableRow>
 </TableLayout>
