@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.a31p_foodparcel.model.Food
+import org.intellij.lang.annotations.RegExp
 import java.util.*
 
 class ImageDisplayActivity : AppCompatActivity() {
@@ -77,7 +78,9 @@ class ImageDisplayActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed() //do not forget
+        if (onSaveData()){
+            super.onBackPressed() //do not forget
+        }
     }
 
     /* Onclick method of SAVE BUTTON to
@@ -85,7 +88,9 @@ class ImageDisplayActivity : AppCompatActivity() {
      * IF valid, Save and call createIntent to send back
      * Back press
      */
-    fun onSubmit(v: View?) {
+    //fun onSubmit(v: View?) {
+    fun onSaveData() : Boolean{
+        //var saved = false
         var isValidName = false
         var isValidCusine = false
         var isValidDate = false
@@ -102,7 +107,7 @@ class ImageDisplayActivity : AppCompatActivity() {
         }
         if (date.isEmpty()) {
             findViewById<EditText?>(R.id.etDate).error = "Date is required"
-        } else {
+        }else {
             isValidDate = true
         }
         if (cuisine.isEmpty()) {
@@ -112,8 +117,10 @@ class ImageDisplayActivity : AppCompatActivity() {
             msg = "Saved"
             //call setup Intent and send back
             HandlingResult()
+            return true
         } else {
             msg = "Fail to save"
+            return false
         }
         Toast.makeText(this.applicationContext, String.format("%s", msg),
                 Toast.LENGTH_SHORT).show()
@@ -137,8 +144,9 @@ class ImageDisplayActivity : AppCompatActivity() {
             putParcelableArrayListExtra("FOOD_DATA", foods)
             setResult(Activity.RESULT_OK, this)
         }
+
         //  #3d return
-        onBackPressed()
+        //onBackPressed()
     }
 
     //Food parcel is created
