@@ -2,7 +2,8 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    xmlns:mask="http://schemas.android.com/tools">
 
     <TableRow
         android:layout_width="wrap_content"
@@ -51,12 +52,14 @@
             android:padding="5dp"
             android:text="@string/label_date" />
 
-        <EditText
+        <mk.webfactory.dz.maskededittext.MaskedEditText
             android:id="@+id/etDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:inputType="number"
+            app:maskededittext_mask="##/##/####"
+            app:maskededittext_maskCharacter="#"
             android:text="@string/label_date" />
 
     </TableRow>
@@ -102,4 +105,5 @@
 
 
     </TableRow>
+
 </TableLayout>
