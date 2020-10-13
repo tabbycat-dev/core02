@@ -107,7 +107,10 @@ class ImageDisplayActivity : AppCompatActivity() {
         }
         if (date.isEmpty()) {
             findViewById<EditText?>(R.id.etDate).error = "Date is required"
-        }else {
+        }else if (date.length < 10){
+            findViewById<EditText?>(R.id.etDate).error = "Valid date is required"
+        }
+        else {
             isValidDate = true
         }
         if (cuisine.isEmpty()) {
