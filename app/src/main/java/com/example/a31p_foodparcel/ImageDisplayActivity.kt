@@ -4,11 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.*
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.RatingBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.a31p_foodparcel.model.Food
-import org.intellij.lang.annotations.RegExp
 import java.util.*
 
 class ImageDisplayActivity : AppCompatActivity() {
@@ -18,6 +19,12 @@ class ImageDisplayActivity : AppCompatActivity() {
     private lateinit var date: String
     private lateinit var cuisine: String
     private var rating: Float = 0f
+
+    private lateinit var ivImage: ImageView ;
+    lateinit var etName: EditText ;
+    lateinit var etDate: EditText ;
+    lateinit var etCusine: EditText ;
+    lateinit var ratingBar: RatingBar ;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,11 +61,11 @@ class ImageDisplayActivity : AppCompatActivity() {
 
     private fun updateUI() {
         val image: Int? = food.image
-        val ivImage = findViewById<ImageView?>(R.id.imageView)
-        val etName = findViewById<EditText?>(R.id.etName)
-        val etDate = findViewById<EditText?>(R.id.etDate)
-        val etCusine = findViewById<EditText?>(R.id.etCuisine)
-        val ratingBar = findViewById<RatingBar?>(R.id.ratingBar)
+        ivImage = findViewById(R.id.imageView)
+        etName = findViewById(R.id.etName)
+        etDate = findViewById(R.id.etDate)
+        etCusine = findViewById(R.id.etCuisine)
+        ratingBar = findViewById(R.id.ratingBar)
         image?.let {
             val imageRes = resources.getDrawable(it)
             ivImage.setImageDrawable(imageRes)
@@ -95,26 +102,25 @@ class ImageDisplayActivity : AppCompatActivity() {
         var isValidCusine = false
         var isValidDate = false
         var msg = ""
-        name = findViewById<EditText?>(R.id.etName).text.toString()
-        cuisine = findViewById<EditText?>(R.id.etCuisine).text.toString()
-        date = findViewById<EditText?>(R.id.etDate).text.toString()
-        rating = findViewById<RatingBar?>(R.id.ratingBar).rating
+        name = etName.text.toString()
+        cuisine = etCusine.text.toString()
+        date = etDate.text.toString()
+        rating = ratingBar.rating
         //validate FORM
         if (name.isEmpty()) {
-            findViewById<EditText?>(R.id.etName).error = "Name is required"
+            etName.error = "Name is required"
         } else {
             isValidName = true
         }
         if (date.isEmpty()) {
-            findViewById<EditText?>(R.id.etDate).error = "Date is required"
+            etDate.error = "Date is required"
         }else if (date.length < 10){
-            findViewById<EditText?>(R.id.etDate).error = "Valid date is required"
-        }
-        else {
+            etDate.error = "Valid date is required"
+        }else {
             isValidDate = true
         }
         if (cuisine.isEmpty()) {
-            findViewById<EditText?>(R.id.etCuisine).error = "Type of Cusine is required."
+            etCusine.error = "Type of Cusine is required."
         } else isValidCusine = true
         if (isValidCusine && isValidName && isValidDate) {
             msg = "Saved"

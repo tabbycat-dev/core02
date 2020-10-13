@@ -16,17 +16,14 @@
             android:layout_height="200dp"
             android:layout_margin="5dp"
             android:baseline="10dp"
-            android:onClick="clickFood01"
-            android:tag="bo_kho"
-            app:srcCompat="@drawable/bo_kho" />
+             />
 
         <ImageView
             android:id="@+id/image_02"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_margin="5dp"
-            app:srcCompat="@drawable/broken_rice"
-            android:onClick="clickFood02" />
+            />
     </TableRow>
 
     <TableRow
@@ -82,17 +79,13 @@
             android:id="@+id/image_03"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_margin="5dp"
-            app:srcCompat="@drawable/sashimi"
-            android:onClick="clickFood03" />
+            android:layout_margin="5dp" />
 
         <ImageView
             android:id="@+id/image_04"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_margin="5dp"
-            app:srcCompat="@drawable/thai_mango"
-            android:onClick="clickFood04" />
+            android:layout_margin="5dp"/>
     </TableRow>
 
     <TableRow
